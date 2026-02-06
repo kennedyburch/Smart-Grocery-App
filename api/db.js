@@ -1,21 +1,13 @@
 // Simple in-memory database for Vercel demo
 // In a real app, you'd use a hosted database like PlanetScale or Supabase
 
-interface User {
-  id: string;
-  email: string;
-  name: string;
-  password: string;
-  createdAt: string;
-}
-
 // In-memory storage (resets on each deployment)
-let users: User[] = [];
+let users = [];
 
 export const db = {
   users: {
-    create: (user: Omit<User, 'id' | 'createdAt'>) => {
-      const newUser: User = {
+    create: (user) => {
+      const newUser = {
         ...user,
         id: Math.random().toString(36).substring(2),
         createdAt: new Date().toISOString()
@@ -24,11 +16,11 @@ export const db = {
       return newUser;
     },
     
-    findByEmail: (email: string) => {
+    findByEmail: (email) => {
       return users.find(user => user.email === email);
     },
     
-    findById: (id: string) => {
+    findById: (id) => {
       return users.find(user => user.id === id);
     }
   }
