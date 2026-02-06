@@ -18,20 +18,22 @@ export default {
     },
     extend: {
       colors: {
-        // Custom SmartCart Color Palette
-        smartcart: {
-          primary: "#14B8A6",     // Teal
-          secondary: "#8B5CF6",   // Purple
-          background: {
-            light: "#FFFFFF",     // Background Light
-            dark: "#0F172A",      // Background Dark
-          },
-          text: {
-            primary: "#1E293B",   // Text Primary
-            secondary: "#64748B", // Text Secondary
-          },
-          success: "#22C55E",     // Success Green
-          warning: "#EF4444",     // Warning Red
+        // Custom SmartCart Color Palette - using standard Tailwind format
+        'teal': {
+          500: '#14B8A6',  // Primary teal
+        },
+        'purple': {
+          500: '#8B5CF6', // Secondary purple
+        },
+        'green': {
+          500: '#22C55E', // Success green
+        },
+        'red': {
+          500: '#EF4444', // Warning red
+        },
+        'slate': {
+          800: '#1E293B', // Text primary
+          500: '#64748B', // Text secondary
         },
         // Keep existing shadcn/ui colors for components
         border: "hsl(var(--border))",

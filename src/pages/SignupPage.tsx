@@ -82,16 +82,16 @@ export const SignupPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-smartcart-primary/5 to-smartcart-secondary/5 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-teal-50 to-purple-50 flex items-center justify-center p-4">
       <div className="max-w-md w-full space-y-8">
         <div className="text-center">
-          <div className="mx-auto h-12 w-12 bg-smartcart-primary rounded-xl flex items-center justify-center">
+          <div className="mx-auto h-12 w-12 bg-teal-500 rounded-xl flex items-center justify-center">
             <svg className="h-8 w-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6H19" />
             </svg>
           </div>
-          <h2 className="mt-6 text-3xl font-bold text-smartcart-text-primary">Join SmartCart</h2>
-          <p className="mt-2 text-sm text-smartcart-text-secondary">
+          <h2 className="mt-6 text-3xl font-bold text-slate-800">Join SmartCart</h2>
+          <p className="mt-2 text-sm text-slate-600">
             Create your account to start organizing your grocery lists
           </p>
         </div>
@@ -99,7 +99,7 @@ export const SignupPage: React.FC = () => {
         <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
           <div className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-smartcart-text-primary">
+              <label htmlFor="name" className="block text-sm font-medium text-slate-700">
                 Full Name
               </label>
               <input
@@ -111,12 +111,12 @@ export const SignupPage: React.FC = () => {
                 value={formData.name}
                 onChange={handleChange}
                 className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  validationErrors.name ? 'border-smartcart-warning' : 'border-gray-300'
-                } placeholder-smartcart-text-secondary text-smartcart-text-primary rounded-lg focus:outline-none focus:ring-2 focus:ring-smartcart-primary focus:border-smartcart-primary focus:z-10 sm:text-sm`}
+                  validationErrors.name ? 'border-red-300' : 'border-gray-300'
+                } placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm`}
                 placeholder="Enter your full name"
               />
               {validationErrors.name && (
-                <p className="mt-1 text-xs text-smartcart-warning">{validationErrors.name}</p>
+                <p className="mt-1 text-xs text-red-600">{validationErrors.name}</p>
               )}
             </div>
 

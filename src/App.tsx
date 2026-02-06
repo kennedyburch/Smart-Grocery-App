@@ -9,7 +9,7 @@ import { ProtectedRoute, PublicOnlyRoute } from './components/ProtectedRoute';
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-smartcart-background-light">
+      <div className="min-h-screen bg-white">
         <Navigation />
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -49,10 +49,10 @@ function Navigation() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <div className="w-8 h-8 bg-smartcart-primary rounded-lg flex items-center justify-center">
+              <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold text-lg">S</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-smartcart-text-primary">SmartCart</span>
+              <span className="ml-2 text-xl font-bold text-slate-800">SmartCart</span>
             </div>
           </div>
           <div className="flex items-center space-x-4">
@@ -60,8 +60,8 @@ function Navigation() {
               to="/"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 location.pathname === '/' 
-                  ? 'bg-smartcart-primary/10 text-smartcart-primary' 
-                  : 'text-smartcart-text-secondary hover:text-smartcart-text-primary'
+                  ? 'bg-teal-100 text-teal-700' 
+                  : 'text-slate-500 hover:text-slate-800'
               }`}
             >
               Home
@@ -70,15 +70,15 @@ function Navigation() {
               to="/login"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 location.pathname === '/login' 
-                  ? 'bg-smartcart-primary/10 text-smartcart-primary' 
-                  : 'text-smartcart-text-secondary hover:text-smartcart-text-primary'
+                  ? 'bg-teal-100 text-teal-700' 
+                  : 'text-slate-500 hover:text-slate-800'
               }`}
             >
               Login
             </Link>
             <Link 
               to="/signup"
-              className="bg-smartcart-primary hover:bg-smartcart-primary/90 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-md"
+              className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-md"
             >
               Sign Up
             </Link>
@@ -92,9 +92,9 @@ function Navigation() {
 // Beautiful Homepage Component
 function HomePage() {
   return (
-    <div className="min-h-screen bg-smartcart-background-light">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-smartcart-primary to-smartcart-secondary">
+      <div className="bg-gradient-to-r from-teal-500 to-purple-500">
         <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
@@ -109,7 +109,7 @@ function HomePage() {
               <div className="rounded-md shadow-lg">
                 <Link 
                   to="/signup"
-                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-smartcart-primary bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 transition-colors shadow-xl"
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-teal-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 transition-colors shadow-xl"
                 >
                   Get Started
                 </Link>
@@ -123,8 +123,8 @@ function HomePage() {
       <div className="py-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="lg:text-center">
-            <h2 className="text-base text-smartcart-primary font-semibold tracking-wide uppercase">Features</h2>
-            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-smartcart-text-primary sm:text-4xl">
+            <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">Features</h2>
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-800 sm:text-4xl">
               Everything your household needs
             </p>
           </div>
@@ -135,13 +135,13 @@ function HomePage() {
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-smartcart-primary text-white">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-teal-500 text-white">
                       <Users className="h-6 w-6" />
                     </div>
                   </div>
                   <div className="ml-4">
-                    <h3 className="text-lg leading-6 font-medium text-smartcart-text-primary">Real-time Collaboration</h3>
-                    <p className="mt-2 text-base text-smartcart-text-secondary">
+                    <h3 className="text-lg leading-6 font-medium text-slate-800">Real-time Collaboration</h3>
+                    <p className="mt-2 text-base text-slate-600">
                       See changes instantly as family members add or remove items from shared lists.
                     </p>
                   </div>
@@ -152,13 +152,13 @@ function HomePage() {
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-smartcart-success text-white">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
                       <ShoppingCart className="h-6 w-6" />
                     </div>
                   </div>
                   <div className="ml-4">
-                    <h3 className="text-lg leading-6 font-medium text-smartcart-text-primary">AI-Powered Suggestions</h3>
-                    <p className="mt-2 text-base text-smartcart-text-secondary">
+                    <h3 className="text-lg leading-6 font-medium text-slate-800">AI-Powered Suggestions</h3>
+                    <p className="mt-2 text-base text-slate-600">
                       Get intelligent recommendations based on your shopping patterns and preferences.
                     </p>
                   </div>
@@ -169,13 +169,13 @@ function HomePage() {
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-smartcart-secondary text-white">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
                       <Users className="h-6 w-6" />
                     </div>
                   </div>
                   <div className="ml-4">
-                    <h3 className="text-lg leading-6 font-medium text-smartcart-text-primary">Household Management</h3>
-                    <p className="mt-2 text-base text-smartcart-text-secondary">
+                    <h3 className="text-lg leading-6 font-medium text-slate-800">Household Management</h3>
+                    <p className="mt-2 text-base text-slate-600">
                       Organize multiple lists for different stores and manage household members easily.
                     </p>
                   </div>
@@ -186,13 +186,13 @@ function HomePage() {
               <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
                 <div className="flex">
                   <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-smartcart-warning text-white">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
                       <Settings className="h-6 w-6" />
                     </div>
                   </div>
                   <div className="ml-4">
-                    <h3 className="text-lg leading-6 font-medium text-smartcart-text-primary">Mobile First</h3>
-                    <p className="mt-2 text-base text-smartcart-text-secondary">
+                    <h3 className="text-lg leading-6 font-medium text-slate-800">Mobile First</h3>
+                    <p className="mt-2 text-base text-slate-600">
                       Designed for mobile use while shopping, with offline support and quick actions.
                     </p>
                   </div>
@@ -262,18 +262,18 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-smartcart-background-light py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
-          <div className="mx-auto h-12 w-12 bg-smartcart-primary rounded-lg flex items-center justify-center">
+          <div className="mx-auto h-12 w-12 bg-teal-500 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-xl">S</span>
           </div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-smartcart-text-primary">
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-slate-800">
             Sign in to your account
           </h2>
-          <p className="mt-2 text-center text-sm text-smartcart-text-secondary">
+          <p className="mt-2 text-center text-sm text-slate-600">
             Or{' '}
-            <Link to="/signup" className="font-medium text-smartcart-primary hover:text-smartcart-primary/80">
+            <Link to="/signup" className="font-medium text-teal-600 hover:text-teal-500">
               start your 14-day free trial
             </Link>
           </p>
