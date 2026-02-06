@@ -13,6 +13,29 @@ Your app now works ENTIRELY on Vercel! Here's what changed:
 - Updated to call `/api/*` instead of `localhost:3000`
 - Will work seamlessly with Vercel's routing
 
+## ⚠️ If You Get Build Errors
+
+The error you saw was because Vercel was confused by the monorepo structure. The updated `vercel.json` should fix this, but if you still get errors:
+
+### Alternative: Flatten the Structure
+If the monorepo is still causing issues, you could:
+
+1. **Move frontend to root:**
+   ```bash
+   cp -r packages/frontend/* .
+   rm -rf packages/
+   ```
+
+2. **Update package.json** to be just the frontend package
+
+3. **Redeploy**
+
+### Alternative: Use Next.js
+For the simplest Vercel experience:
+1. Create a new Next.js project
+2. Copy your React components over
+3. Add API routes in `/pages/api/`
+
 ## 🎯 How to Deploy
 
 ### 1. Push to GitHub
