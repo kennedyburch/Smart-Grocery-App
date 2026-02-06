@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.17",
+    "@vercel/node": "^5.5.32",
     "concurrently": "^8.2.2",
     "prettier": "^3.2.5",
     "typescript": "^5.3.3"
