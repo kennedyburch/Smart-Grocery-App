@@ -18,18 +18,34 @@ export default {
     },
     extend: {
       colors: {
+        // Custom SmartCart Color Palette
+        smartcart: {
+          primary: "#14B8A6",     // Teal
+          secondary: "#8B5CF6",   // Purple
+          background: {
+            light: "#FFFFFF",     // Background Light
+            dark: "#0F172A",      // Background Dark
+          },
+          text: {
+            primary: "#1E293B",   // Text Primary
+            secondary: "#64748B", // Text Secondary
+          },
+          success: "#22C55E",     // Success Green
+          warning: "#EF4444",     // Warning Red
+        },
+        // Keep existing shadcn/ui colors for components
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
-          foreground: "hsl(var(--primary-foreground))",
+          DEFAULT: "#14B8A6", // Use your teal as primary
+          foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "hsl(var(--secondary))",
-          foreground: "hsl(var(--secondary-foreground))",
+          DEFAULT: "#8B5CF6", // Use your purple as secondary
+          foreground: "#FFFFFF",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
