@@ -1,11 +1,11 @@
 import { Express } from 'express';
+import authRoutes from './auth.js';
 
 export function setupRoutes(app: Express) {
-  // API routes will be added here
-  app.use('/api/auth', (req, res) => {
-    res.json({ message: 'Auth routes coming soon' });
-  });
+  // Authentication routes
+  app.use('/api/auth', authRoutes);
 
+  // Placeholder routes (to be implemented)
   app.use('/api/households', (req, res) => {
     res.json({ message: 'Household routes coming soon' });
   });

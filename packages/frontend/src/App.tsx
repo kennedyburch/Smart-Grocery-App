@@ -1,152 +1,367 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Users, Settings } from 'lucide-react';
+import useAuthStore from './stores/authStore';
+import { SignupPage } from './pages/SignupPage';
+import { DashboardPage } from './pages/DashboardPage';
+import { ProtectedRoute, PublicOnlyRoute } from './components/ProtectedRoute';
 
 function App() {
   return (
     <Router>
-      <div className="min-h-screen bg-background">
-        {/* Navigation */}
-        <nav className="border-b bg-card">
-          <div className="container mx-auto px-4">
-            <div className="flex h-16 items-center justify-between">
-              <div className="flex items-center space-x-2">
-                <ShoppingCart className="h-6 w-6 text-primary" />
-                <h1 className="text-xl font-bold">SmartCart</h1>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Users className="h-5 w-5" />
-                <Settings className="h-5 w-5" />
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        {/* Main Content */}
-        <main className="container mx-auto px-4 py-8">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/login" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            <Route path="/household" element={<HouseholdPage />} />
-          </Routes>
-        </main>
+      <div className="min-h-screen bg-gray-50">
+        <Navigation />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/login" element={
+            <PublicOnlyRoute>
+              <LoginPage />
+            </PublicOnlyRoute>
+          } />
+          <Route path="/signup" element={
+            <PublicOnlyRoute>
+              <SignupPage />
+            </PublicOnlyRoute>
+          } />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/household" element={
+            <ProtectedRoute>
+              <HouseholdPage />
+            </ProtectedRoute>
+          } />
+        </Routes>
       </div>
     </Router>
   );
 }
 
-// Placeholder components
+// Modern Navigation Component
+function Navigation() {
+  const location = useLocation();
+
+  return (
+    <nav className="bg-white shadow-sm border-b">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <div className="flex-shrink-0 flex items-center">
+              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                <span className="text-white font-bold text-lg">S</span>
+              </div>
+              <span className="ml-2 text-xl font-bold text-gray-900">SmartCart</span>
+            </div>
+          </div>
+          <div className="flex items-center space-x-4">
+            <Link 
+              to="/"
+              className={`px-3 py-2 rounded-md text-sm font-medium ${
+                location.pathname === '/' 
+                  ? 'bg-blue-100 text-blue-700' 
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              Home
+            </Link>
+            <Link 
+              to="/login"
+              className={`px-3 py-2 rounded-md text-sm font-medium ${
+                location.pathname === '/login' 
+                  ? 'bg-blue-100 text-blue-700' 
+                  : 'text-gray-500 hover:text-gray-700'
+              }`}
+            >
+              Login
+            </Link>
+            <Link 
+              to="/signup"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Sign Up
+            </Link>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+// Beautiful Homepage Component
 function HomePage() {
   return (
-    <div className="text-center">
-      <h2 className="text-3xl font-bold mb-4">Welcome to SmartCart</h2>
-      <p className="text-muted-foreground mb-8">
-        Smart grocery list sharing with AI-powered suggestions
-      </p>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-        <FeatureCard 
-          title="Real-time Collaboration"
-          description="Share lists with household members and see changes instantly"
-          icon={<Users className="h-8 w-8 text-primary" />}
-        />
-        <FeatureCard 
-          title="Smart Suggestions"
-          description="AI-powered recommendations based on your shopping patterns"
-          icon={<ShoppingCart className="h-8 w-8 text-primary" />}
-        />
-        <FeatureCard 
-          title="Mobile First"
-          description="Optimized for mobile use while shopping in stores"
-          icon={<Settings className="h-8 w-8 text-primary" />}
-        />
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500">
+        <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h1 className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
+              <span className="block">Smart Grocery</span>
+              <span className="block text-purple-200">List Sharing</span>
+            </h1>
+            <p className="mt-3 max-w-md mx-auto text-base text-purple-100 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+              Collaborate with your household on grocery lists in real-time. 
+              Get AI-powered suggestions and never forget an item again.
+            </p>
+            <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+              <div className="rounded-md shadow">
+                <Link 
+                  to="/signup"
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-purple-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 transition-colors"
+                >
+                  Get Started
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Features Section */}
+      <div className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="lg:text-center">
+            <h2 className="text-base text-blue-600 font-semibold tracking-wide uppercase">Features</h2>
+            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
+              Everything your household needs
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+              {/* Real-time Collaboration */}
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white">
+                      <Users className="h-6 w-6" />
+                    </div>
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">Real-time Collaboration</h3>
+                    <p className="mt-2 text-base text-gray-500">
+                      See changes instantly as family members add or remove items from shared lists.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Smart Suggestions */}
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
+                      <ShoppingCart className="h-6 w-6" />
+                    </div>
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">AI-Powered Suggestions</h3>
+                    <p className="mt-2 text-base text-gray-500">
+                      Get intelligent recommendations based on your shopping patterns and preferences.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Household Management */}
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
+                      <Users className="h-6 w-6" />
+                    </div>
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">Household Management</h3>
+                    <p className="mt-2 text-base text-gray-500">
+                      Organize multiple lists for different stores and manage household members easily.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Mobile First */}
+              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border">
+                <div className="flex">
+                  <div className="flex-shrink-0">
+                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-orange-500 text-white">
+                      <Settings className="h-6 w-6" />
+                    </div>
+                  </div>
+                  <div className="ml-4">
+                    <h3 className="text-lg leading-6 font-medium text-gray-900">Mobile First</h3>
+                    <p className="mt-2 text-base text-gray-500">
+                      Designed for mobile use while shopping, with offline support and quick actions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Status Section */}
+      <div className="bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-2xl font-bold text-gray-900 mb-8">Development Status</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="bg-green-100 p-4 rounded-lg">
+                <h3 className="font-semibold text-green-800">✅ Completed</h3>
+                <p className="text-green-600 text-sm mt-1">Monorepo setup, UI components, basic routing</p>
+              </div>
+              <div className="bg-yellow-100 p-4 rounded-lg">
+                <h3 className="font-semibold text-yellow-800">🚧 In Progress</h3>
+                <p className="text-yellow-600 text-sm mt-1">Database setup, authentication system</p>
+              </div>
+              <div className="bg-blue-100 p-4 rounded-lg">
+                <h3 className="font-semibold text-blue-800">📋 Planned</h3>
+                <p className="text-blue-600 text-sm mt-1">Real-time sync, AI suggestions, mobile app</p>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
 }
 
-function FeatureCard({ title, description, icon }: {
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-}) {
-  return (
-    <div className="p-6 border rounded-lg bg-card">
-      <div className="mb-4">{icon}</div>
-      <h3 className="text-lg font-semibold mb-2">{title}</h3>
-      <p className="text-muted-foreground">{description}</p>
-    </div>
-  );
-}
-
 function LoginPage() {
-  return (
-    <div className="max-w-md mx-auto">
-      <h2 className="text-2xl font-bold mb-6">Login</h2>
-      <form className="space-y-4">
-        <div>
-          <label className="block text-sm font-medium mb-2">Email</label>
-          <input 
-            type="email" 
-            className="w-full p-3 border rounded-lg"
-            placeholder="Enter your email"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium mb-2">Password</label>
-          <input 
-            type="password" 
-            className="w-full p-3 border rounded-lg"
-            placeholder="Enter your password"
-          />
-        </div>
-        <button 
-          type="submit"
-          className="w-full bg-primary text-primary-foreground py-3 rounded-lg hover:bg-primary/90"
-        >
-          Login
-        </button>
-      </form>
-    </div>
-  );
-}
+  const { login, isLoading, error, clearError } = useAuthStore();
+  const [email, setEmail] = React.useState('');
+  const [password, setPassword] = React.useState('');
+  const [localError, setLocalError] = React.useState('');
+  const navigate = useNavigate();
+  const location = useLocation();
 
-function SignupPage() {
+  // Get the page they were trying to visit, or default to dashboard
+  const from = location.state?.from?.pathname || '/dashboard';
+
+  React.useEffect(() => {
+    clearError();
+  }, [clearError]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLocalError('');
+
+    if (!email || !password) {
+      setLocalError('Please fill in all fields');
+      return;
+    }
+
+    try {
+      await login(email, password);
+      navigate(from, { replace: true });
+    } catch (err) {
+      // Error is already handled by the store
+    }
+  };
+
   return (
-    <div className="max-w-md mx-auto">
-      <h2 className="text-2xl font-bold mb-6">Sign Up</h2>
-      <form className="space-y-4">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-md w-full space-y-8">
         <div>
-          <label className="block text-sm font-medium mb-2">Name</label>
-          <input 
-            type="text" 
-            className="w-full p-3 border rounded-lg"
-            placeholder="Enter your name"
-          />
+          <div className="mx-auto h-12 w-12 bg-blue-600 rounded-lg flex items-center justify-center">
+            <span className="text-white font-bold text-xl">S</span>
+          </div>
+          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+            Sign in to your account
+          </h2>
+          <p className="mt-2 text-center text-sm text-gray-600">
+            Or{' '}
+            <Link to="/signup" className="font-medium text-blue-600 hover:text-blue-500">
+              start your 14-day free trial
+            </Link>
+          </p>
         </div>
-        <div>
-          <label className="block text-sm font-medium mb-2">Email</label>
-          <input 
-            type="email" 
-            className="w-full p-3 border rounded-lg"
-            placeholder="Enter your email"
-          />
-        </div>
-        <div>
-          <label className="block text-sm font-medium mb-2">Password</label>
-          <input 
-            type="password" 
-            className="w-full p-3 border rounded-lg"
-            placeholder="Create a password"
-          />
-        </div>
-        <button 
-          type="submit"
-          className="w-full bg-primary text-primary-foreground py-3 rounded-lg hover:bg-primary/90"
-        >
-          Sign Up
-        </button>
-      </form>
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
+          {(error || localError) && (
+            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded">
+              {error || localError}
+            </div>
+          )}
+          
+          <div className="rounded-md shadow-sm -space-y-px">
+            <div>
+              <label htmlFor="email-address" className="sr-only">
+                Email address
+              </label>
+              <input
+                id="email-address"
+                name="email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                placeholder="Email address"
+                disabled={isLoading}
+              />
+            </div>
+            <div>
+              <label htmlFor="password" className="sr-only">
+                Password
+              </label>
+              <input
+                id="password"
+                name="password"
+                type="password"
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-blue-500 focus:border-blue-500 focus:z-10 sm:text-sm"
+                placeholder="Password"
+                disabled={isLoading}
+              />
+            </div>
+          </div>
+
+          <div className="flex items-center justify-between">
+            <div className="flex items-center">
+              <input
+                id="remember-me"
+                name="remember-me"
+                type="checkbox"
+                className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+              />
+              <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+                Remember me
+              </label>
+            </div>
+
+            <div className="text-sm">
+              <button type="button" className="font-medium text-blue-600 hover:text-blue-500">
+                Forgot your password?
+              </button>
+            </div>
+          </div>
+
+          <div>
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {isLoading ? 'Signing in...' : 'Sign in'}
+            </button>
+          </div>
+
+          <div className="text-center">
+            <p className="text-sm text-gray-600">
+              Don't have an account?{' '}
+              <Link to="/signup" className="font-medium text-blue-600 hover:text-blue-500">
+                Sign up here
+              </Link>
+            </p>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }
