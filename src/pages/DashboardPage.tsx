@@ -76,7 +76,7 @@ export const DashboardPage: React.FC = () => {
                   <span className="text-sm font-medium text-gray-900">12 items bought this week</span>
                 </div>
                 
-                <div className="flex items-center p-3 bg-purple-50 rounded-lg">
+                <div className="flex items-center p-3 bg-purple-100 rounded-lg">
                   <span className="text-purple-500 mr-3">💰</span>
                   <span className="text-sm font-medium text-gray-900">Total estimated spend: $87</span>
                 </div>

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Search, Edit2, Trash2 } from 'lucide-react';
+import { Search, Trash2, TrendingUp } from 'lucide-react';
 import useAuthStore from '../stores/authStore';
 import { mockGroceryAPI } from '../lib/mockGroceryAPI';
 
@@ -19,6 +19,7 @@ export function ListPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [isLoading, setIsLoading] = useState(true);
   const [newItemName, setNewItemName] = useState('');
+  const [addedSuggestions, setAddedSuggestions] = useState<string[]>([]);
 
   useEffect(() => {
     fetchItems();
@@ -100,9 +101,41 @@ export function ListPage() {
     }
   };
 
+  const allSuggestions = [
+    { name: 'Milk', emoji: '🥛', description: 'Every 7 days' },
+    { name: 'Coffee', emoji: '☕', description: 'Every 2 weeks' },
+    { name: 'Eggs', emoji: '🥚', description: 'Running low' }
+  ];
+
+  const availableSuggestions = allSuggestions.filter(
+    suggestion => !addedSuggestions.includes(suggestion.name)
+  );
+
+  const addSuggestionToList = async (itemName: string) => {
+    try {
+      await mockGroceryAPI.addItem(itemName, user?.id || 'sarah-001');
+      setAddedSuggestions(prev => [...prev, itemName]);
+      fetchItems();
+    } catch (error) {
+      console.error('Failed to add suggestion:', error);
+    }
+  };
+
   const deleteItem = async (itemId: string) => {
     try {
+      // Find the item being deleted to check if it was a Smart Suggestion
+      const itemToDelete = items.find(item => item.id === itemId);
+      
       await mockGroceryAPI.deleteItem(itemId);
+      
+      // If the deleted item was originally from Smart Suggestions, move it back
+      if (itemToDelete) {
+        const suggestionNames = allSuggestions.map(s => s.name);
+        if (suggestionNames.includes(itemToDelete.name)) {
+          setAddedSuggestions(prev => prev.filter(name => name !== itemToDelete.name));
+        }
+      }
+      
       fetchItems();
     } catch (error) {
       console.error('Failed to delete item:', error);
@@ -134,7 +167,7 @@ export function ListPage() {
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             {/* Title */}
             <h1 className="text-2xl font-bold text-gray-900">📝 Shopping List</h1>
@@ -154,7 +187,39 @@ export function ListPage() {
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Smart Suggestions */}
+        {availableSuggestions.length > 0 && (
+          <div className="mb-6 bg-white rounded-lg shadow-sm p-4 border border-gray-100">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="text-base font-semibold text-gray-900 flex items-center">
+                <TrendingUp className="h-4 w-4 text-teal-500 mr-2" />
+                Smart Suggestions
+              </h3>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+              {availableSuggestions.map((suggestion) => (
+                <div key={suggestion.name} className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                  <div className="flex items-center space-x-2">
+                    <span className="text-lg">{suggestion.emoji}</span>
+                    <div>
+                      <p className="font-medium text-gray-900 text-sm">{suggestion.name}</p>
+                      <p className="text-xs text-gray-500">{suggestion.description}</p>
+                    </div>
+                  </div>
+                  <button
+                    onClick={() => addSuggestionToList(suggestion.name)}
+                    className="bg-teal-500 text-white px-2 py-1 rounded text-xs hover:bg-teal-600 transition-colors"
+                  >
+                    Add
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {filteredItems.length === 0 && items.length === 0 ? (
           <div className="bg-white rounded-lg shadow-sm border border-gray-100">
             <div className="text-center py-12">
@@ -212,14 +277,11 @@ export function ListPage() {
                     </div>
                   </div>
                   <div className="flex items-center space-x-2">
-                    <button className="w-6 h-6 border-2 border-gray-300 rounded-full hover:border-teal-500 transition-colors flex items-center justify-center">
-                      <Edit2 className="h-3 w-3 text-gray-400 hover:text-gray-600" />
-                    </button>
                     <button 
                       onClick={() => deleteItem(item.id)}
-                      className="w-6 h-6 border-2 border-gray-300 rounded-full hover:border-teal-500 transition-colors flex items-center justify-center"
+                      className="p-2 hover:bg-gray-100 rounded transition-colors"
                     >
-                      <Trash2 className="h-3 w-3 text-gray-400 hover:text-red-600" />
+                      <Trash2 className="h-4 w-4 text-gray-400 hover:text-red-600" />
                     </button>
                   </div>
                 </div>

@@ -31,7 +31,7 @@ interface PurchaseHistory {
 
 // Category mapping for auto-categorization
 const CATEGORY_KEYWORDS = {
-  'Produce': ['apple', 'banana', 'lettuce', 'tomato', 'onion', 'potato', 'carrot', 'spinach', 'avocado', 'lemon'],
+  'Produce': ['apple', 'banana', 'lettuce', 'tomato', 'tomatoes', 'cherry tomatoes', 'onion', 'potato', 'carrot', 'spinach', 'avocado', 'lemon'],
   'Dairy': ['milk', 'cheese', 'yogurt', 'butter', 'cream', 'eggs'],
   'Meat': ['chicken', 'beef', 'pork', 'fish', 'salmon', 'turkey', 'bacon', 'sausage'],
   'Pantry': ['rice', 'pasta', 'bread', 'flour', 'sugar', 'salt', 'pepper', 'oil', 'coffee', 'tea'],
@@ -88,6 +88,33 @@ let mockItems: GroceryItem[] = [
     category: 'Produce', 
     addedBy: 'jamie-002',
     addedAt: '2026-02-06T10:00:00Z',
+    isCompleted: false,
+    householdId: 'apartment-household-1'
+  },
+  {
+    id: 'item-5',
+    name: 'Yogurt',
+    category: 'Dairy',
+    addedBy: 'jamie-002',
+    addedAt: '2026-02-08T05:00:00Z', // 3 hours ago
+    isCompleted: false,
+    householdId: 'apartment-household-1'
+  },
+  {
+    id: 'item-6',
+    name: 'Cherry Tomatoes',
+    category: 'Produce',
+    addedBy: 'jamie-002',
+    addedAt: '2026-02-07T08:00:00Z', // Yesterday
+    isCompleted: false,
+    householdId: 'apartment-household-1'
+  },
+  {
+    id: 'item-7',
+    name: 'Rice',
+    category: 'Pantry',
+    addedBy: 'alex-003',
+    addedAt: '2026-02-07T10:00:00Z', // 1 day ago
     isCompleted: false,
     householdId: 'apartment-household-1'
   }
