@@ -35,14 +35,22 @@ export const DashboardPage: React.FC = () => {
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Hello, Sarah! 👋</h1>
-          <p className="text-gray-600 mt-2">Ready to manage your grocery list?</p>
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Hello, Sarah! 👋</h1>
+            <p className="text-gray-600 mt-2">Ready to manage your grocery list?</p>
+          </div>
+          <Link 
+            to="/shop"
+            className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors flex items-center"
+          >
+            + Start Shopping
+          </Link>
         </div>
 
         {/* Dashboard Grid */}
         <div className="space-y-6">
-          {/* Top Row: Quick Stats and Quick Actions */}
+          {/* Top Row: Your Household and Smart Suggestions */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Your Household */}
             <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
@@ -62,90 +70,72 @@ export const DashboardPage: React.FC = () => {
                   <span className="text-yellow-500 mr-3">💡</span>
                   <span className="text-sm font-medium text-gray-900">3 new suggestions</span>
                 </div>
+                
+                <div className="flex items-center p-3 bg-gray-100 rounded-lg">
+                  <span className="text-green-500 mr-3">✅</span>
+                  <span className="text-sm font-medium text-gray-900">12 items bought this week</span>
+                </div>
+                
+                <div className="flex items-center p-3 bg-purple-50 rounded-lg">
+                  <span className="text-purple-500 mr-3">💰</span>
+                  <span className="text-sm font-medium text-gray-900">Total estimated spend: $87</span>
+                </div>
               </div>
             </div>
 
-            {/* Quick Actions */}
+            {/* Smart Suggestions */}
             <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
-              <div className="space-y-3">
-                <button
-                  className="w-full bg-teal-500 text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors flex items-center justify-center"
-                >
-                  ➕ Add Item to List
-                </button>
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+                  <TrendingUp className="h-5 w-5 text-teal-500 mr-2" />
+                  Smart Suggestions (Top 3)
+                </h3>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                  <div>
+                    <p className="font-medium text-gray-900">🥛 Milk</p>
+                    <p className="text-sm text-gray-600">Usually every 7 days</p>
+                    <p className="text-sm text-gray-600">Last: 5 days ago</p>
+                  </div>
+                  <button
+                    className="bg-teal-500 text-white px-3 py-1 rounded-md text-sm hover:bg-teal-600 transition-colors whitespace-nowrap"
+                  >
+                    Add to list
+                  </button>
+                </div>
                 
-                <button
-                  className="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors flex items-center justify-center"
-                >
-                  🛒 Start Shopping
-                </button>
+                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                  <div>
+                    <p className="font-medium text-gray-900">☕ Coffee</p>
+                    <p className="text-sm text-gray-600">Usually every 2 weeks</p>
+                    <p className="text-sm text-gray-600">Last: 2 weeks ago</p>
+                  </div>
+                  <button
+                    className="bg-teal-500 text-white px-3 py-1 rounded-md text-sm hover:bg-teal-600 transition-colors whitespace-nowrap"
+                  >
+                    Add to list
+                  </button>
+                </div>
                 
-                <button
-                  className="w-full bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center"
-                >
-                  📋 View Full List
-                </button>
-                
-                <button
-                  className="w-full bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition-colors flex items-center justify-center"
-                >
-                  ⚙️ Manage Lists
-                </button>
+                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                  <div>
+                    <p className="font-medium text-gray-900">🥚 Eggs</p>
+                    <p className="text-sm text-gray-600">Running low based on your recipes this week</p>
+                  </div>
+                  <button
+                    className="bg-teal-500 text-white px-3 py-1 rounded-md text-sm hover:bg-teal-600 transition-colors whitespace-nowrap"
+                  >
+                    Add to list
+                  </button>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Bottom Row: Other sections */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-
-          {/* Smart Suggestions */}
-          <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900 flex items-center">
-                <TrendingUp className="h-5 w-5 text-teal-500 mr-2" />
-                Smart Suggestions (Top 3)
-              </h3>
-            </div>
-            
-            <div className="space-y-4">
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                <div>
-                  <p className="font-medium text-gray-900">🥛 Milk</p>
-                  <p className="text-sm text-gray-600">Usually every 7 days. Last: 5 days ago</p>
-                </div>
-                <button
-                  className="bg-teal-500 text-white px-3 py-1 rounded-md text-sm hover:bg-teal-600 transition-colors"
-                >
-                  Add to List
-                </button>
-              </div>
-              
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                <div>
-                  <p className="font-medium text-gray-900">☕ Coffee Beans</p>
-                  <p className="text-sm text-gray-600">Usually every 2 weeks. Last: 2 weeks ago</p>
-                </div>
-                <button
-                  className="bg-teal-500 text-white px-3 py-1 rounded-md text-sm hover:bg-teal-600 transition-colors"
-                >
-                  Add to List
-                </button>
-              </div>
-              
-              <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
-                <div>
-                  <p className="font-medium text-gray-900">🥚 Eggs</p>
-                  <p className="text-sm text-gray-600">Running low based on your recipes this week</p>
-                </div>
-                <button
-                  className="bg-teal-500 text-white px-3 py-1 rounded-md text-sm hover:bg-teal-600 transition-colors"
-                >
-                  Add to List
-                </button>
-              </div>
-            </div>
-          </div>
+          {/* Bottom Row: Recent Activity and Who's Online */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           {/* Recent Activity Feed */}
           <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
@@ -181,8 +171,8 @@ export const DashboardPage: React.FC = () => {
                 </div>
               </div>
               
-              <div className="flex items-center space-x-3 p-3 border-l-4 border-teal-500 bg-teal-50">
-                <div className="text-teal-600">
+              <div className="flex items-center space-x-3 p-3 border-l-4 border-blue-500 bg-blue-50">
+                <div className="text-blue-600">
                   <Plus className="h-4 w-4" />
                 </div>
                 <div className="flex-1">
@@ -217,8 +207,8 @@ export const DashboardPage: React.FC = () => {
               
               <div className="flex items-center justify-between">
                 <span className="text-sm text-gray-900">Jamie</span>
-                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                  🟢 Active (2 min ago)
+                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                  ⚫ Last seen: 2 min ago
                 </span>
               </div>
               
