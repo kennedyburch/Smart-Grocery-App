@@ -22,14 +22,6 @@ interface ShoppingSuggestion {
   confidence: number;
 }
 
-interface PurchaseHistory {
-  id: string;
-  itemName: string;
-  category: string;
-  purchasedBy: string;
-  purchasedAt: string;
-}
-
 export const DashboardPage: React.FC = () => {
   const { user } = useAuthStore();
   const [items, setItems] = useState<GroceryItem[]>([]);
@@ -44,17 +36,16 @@ export const DashboardPage: React.FC = () => {
   const fetchDashboardData = async () => {
     try {
       setIsLoading(true);
-      const [itemsData, suggestionsData, historyData] = await Promise.all([
+      const [itemsData, suggestionsData] = await Promise.all([
         mockGroceryAPI.getItems(),
-        mockGroceryAPI.getSuggestions(),
-        mockGroceryAPI.getPurchaseHistory()
+        mockGroceryAPI.getSuggestions()
       ]);
       
       setItems(itemsData);
       setSuggestions(suggestionsData.slice(0, 3)); // Top 3 suggestions
       
       // Create recent activity from items (mock activity feed)
-      const activity = itemsData.slice(-3).reverse().map((item, index) => ({
+      const activity = itemsData.slice(-3).reverse().map((item) => ({
         action: 'added',
         item: item.name,
         user: getUserName(item.addedBy),
