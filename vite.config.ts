@@ -38,7 +38,23 @@ export default defineConfig({
   },
   server: {
     port: 5173,
-    host: true
+    host: true,
+    // Add proxy to handle API calls during development
+    proxy: {
+      '/api': {
+        target: 'http://localhost:3001',
+        changeOrigin: true,
+        secure: false,
+        configure: (proxy, options) => {
+          // Fallback for when we don't have a backend server running
+          proxy.on('error', (err, req, res) => {
+            console.warn('Proxy error, falling back to mock API:', err.message);
+            res.writeHead(500, { 'Content-Type': 'application/json' });
+            res.end(JSON.stringify({ error: 'API server not available' }));
+          });
+        }
+      }
+    }
   },
   build: {
     outDir: 'dist',

@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { mockLogin, mockRegister } from '../lib/mockAuth';
 
 export interface User {
   id: string;
@@ -46,20 +47,8 @@ const useAuthStore = create<AuthStore>()(
         set({ isLoading: true, error: null });
 
         try {
-          const response = await fetch(`${API_BASE_URL}/auth/login`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ email, password }),
-          });
-
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || 'Login failed');
-          }
-
-          const { user, accessToken, refreshToken } = await response.json();
+          // Use mock authentication instead of API call
+          const { user, accessToken, refreshToken } = await mockLogin(email, password);
 
           set({
             user,
@@ -82,20 +71,8 @@ const useAuthStore = create<AuthStore>()(
         set({ isLoading: true, error: null });
 
         try {
-          const response = await fetch(`${API_BASE_URL}/auth/register`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ name, email, password }),
-          });
-
-          if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.error || 'Registration failed');
-          }
-
-          const { user, accessToken, refreshToken } = await response.json();
+          // Use mock authentication instead of API call
+          const { user, accessToken, refreshToken } = await mockRegister(name, email, password);
 
           set({
             user,

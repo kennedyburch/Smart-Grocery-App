@@ -15,7 +15,32 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, password } = req.body;
+    // Parse request body - handle different formats
+    let body = {};
+    
+    if (req.body) {
+      // Body already parsed by middleware
+      body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    } else if (req.method === 'POST') {
+      // Read raw body for serverless functions
+      try {
+        const rawBody = await new Promise((resolve, reject) => {
+          let data = '';
+          req.on('data', chunk => data += chunk);
+          req.on('end', () => resolve(data));
+          req.on('error', reject);
+        });
+        body = rawBody ? JSON.parse(rawBody) : {};
+      } catch (parseError) {
+        console.error('Body parsing error:', parseError);
+        return res.status(400).json({ 
+          error: 'Invalid JSON in request body',
+          details: parseError.message 
+        });
+      }
+    }
+
+    const { name, email, password } = body;
 
     if (!name || !email || !password) {
       return res.status(400).json({ error: 'Missing required fields' });

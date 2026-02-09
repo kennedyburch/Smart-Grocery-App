@@ -1,9 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link, useLocation, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Users, Settings } from 'lucide-react';
 import useAuthStore from './stores/authStore';
 import { SignupPage } from './pages/SignupPage';
 import { DashboardPage } from './pages/DashboardPage';
+import ListPage from './pages/ListPage.tsx';
+import ShopPage from './pages/ShopPage.tsx';
+import RecentPage from './pages/RecentPage.tsx';
 import { ProtectedRoute, PublicOnlyRoute } from './components/ProtectedRoute';
 
 function App() {
@@ -12,7 +14,11 @@ function App() {
       <div className="min-h-screen bg-white">
         <Navigation />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={
+            <ProtectedRoute>
+              <DashboardPage />
+            </ProtectedRoute>
+          } />
           <Route path="/login" element={
             <PublicOnlyRoute>
               <LoginPage />
@@ -28,9 +34,19 @@ function App() {
               <DashboardPage />
             </ProtectedRoute>
           } />
-          <Route path="/household" element={
+          <Route path="/list" element={
             <ProtectedRoute>
-              <HouseholdPage />
+              <ListPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/shop" element={
+            <ProtectedRoute>
+              <ShopPage />
+            </ProtectedRoute>
+          } />
+          <Route path="/recent" element={
+            <ProtectedRoute>
+              <RecentPage />
             </ProtectedRoute>
           } />
         </Routes>
@@ -42,6 +58,11 @@ function App() {
 // Modern Navigation Component
 function Navigation() {
   const location = useLocation();
+  const { user, logout } = useAuthStore();
+
+  const handleLogout = () => {
+    logout();
+  };
 
   return (
     <nav className="bg-white shadow-lg border-b border-gray-100">
@@ -50,182 +71,100 @@ function Navigation() {
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
               <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
+                <span className="text-white font-bold text-lg">P</span>
               </div>
-              <span className="ml-2 text-xl font-bold text-slate-800">SmartCart</span>
+              <span className="ml-2 text-xl font-bold text-slate-800">Pantry Pal</span>
             </div>
           </div>
           <div className="flex items-center space-x-4">
-            <Link 
-              to="/"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                location.pathname === '/' 
-                  ? 'bg-teal-100 text-teal-700' 
-                  : 'text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              Home
-            </Link>
-            <Link 
-              to="/login"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                location.pathname === '/login' 
-                  ? 'bg-teal-100 text-teal-700' 
-                  : 'text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              Login
-            </Link>
-            <Link 
-              to="/signup"
-              className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-md"
-            >
-              Sign Up
-            </Link>
+            {user ? (
+              // Authenticated navigation
+              <>
+                <Link 
+                  to="/"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === '/' || location.pathname === '/dashboard'
+                      ? 'bg-teal-100 text-teal-700' 
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  🏠 Dashboard
+                </Link>
+                <Link 
+                  to="/list"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === '/list' 
+                      ? 'bg-teal-100 text-teal-700' 
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  📝 List
+                </Link>
+                <Link 
+                  to="/shop"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === '/shop' 
+                      ? 'bg-teal-100 text-teal-700' 
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  🛒 Shop
+                </Link>
+                <Link 
+                  to="/recent"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === '/recent' 
+                      ? 'bg-teal-100 text-teal-700' 
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  📊 Recent
+                </Link>
+                <div className="flex items-center space-x-3">
+                  <span className="text-sm text-slate-600">Hi, {user.name}</span>
+                  <button
+                    onClick={handleLogout}
+                    className="px-3 py-2 rounded-md text-sm font-medium text-slate-500 hover:text-slate-800 transition-colors"
+                  >
+                    Logout
+                  </button>
+                </div>
+              </>
+            ) : (
+              // Public navigation
+              <>
+                <Link 
+                  to="/"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === '/' 
+                      ? 'bg-teal-100 text-teal-700' 
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  Home
+                </Link>
+                <Link 
+                  to="/login"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === '/login' 
+                      ? 'bg-teal-100 text-teal-700' 
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  Login
+                </Link>
+                <Link 
+                  to="/signup"
+                  className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-md"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
     </nav>
-  );
-}
-
-// Beautiful Homepage Component
-function HomePage() {
-  return (
-    <div className="min-h-screen bg-white">
-      {/* Hero Section */}
-      <div className="bg-gradient-to-r from-teal-500 to-purple-500">
-        <div className="max-w-7xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
-              <span className="block">Smart Grocery</span>
-              <span className="block text-white/80">List Sharing</span>
-            </h1>
-            <p className="mt-3 max-w-md mx-auto text-base text-white/90 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
-              Collaborate with your household on grocery lists in real-time. 
-              Get AI-powered suggestions and never forget an item again.
-            </p>
-            <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
-              <div className="rounded-md shadow-lg">
-                <Link 
-                  to="/signup"
-                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-teal-600 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10 transition-colors shadow-xl"
-                >
-                  Get Started
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Features Section */}
-      <div className="py-12 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="lg:text-center">
-            <h2 className="text-base text-teal-600 font-semibold tracking-wide uppercase">Features</h2>
-            <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-slate-800 sm:text-4xl">
-              Everything your household needs
-            </p>
-          </div>
-
-          <div className="mt-10">
-            <div className="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
-              {/* Real-time Collaboration */}
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-teal-500 text-white">
-                      <Users className="h-6 w-6" />
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg leading-6 font-medium text-slate-800">Real-time Collaboration</h3>
-                    <p className="mt-2 text-base text-slate-600">
-                      See changes instantly as family members add or remove items from shared lists.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Smart Suggestions */}
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-green-500 text-white">
-                      <ShoppingCart className="h-6 w-6" />
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg leading-6 font-medium text-slate-800">AI-Powered Suggestions</h3>
-                    <p className="mt-2 text-base text-slate-600">
-                      Get intelligent recommendations based on your shopping patterns and preferences.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Household Management */}
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-purple-500 text-white">
-                      <Users className="h-6 w-6" />
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg leading-6 font-medium text-slate-800">Household Management</h3>
-                    <p className="mt-2 text-base text-slate-600">
-                      Organize multiple lists for different stores and manage household members easily.
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Mobile First */}
-              <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transition-shadow border border-gray-100">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <div className="flex items-center justify-center h-12 w-12 rounded-md bg-red-500 text-white">
-                      <Settings className="h-6 w-6" />
-                    </div>
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-lg leading-6 font-medium text-slate-800">Mobile First</h3>
-                    <p className="mt-2 text-base text-slate-600">
-                      Designed for mobile use while shopping, with offline support and quick actions.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Status Section */}
-      <div className="bg-gray-50 py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Development Status</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-green-100 p-4 rounded-lg">
-                <h3 className="font-semibold text-green-800">✅ Completed</h3>
-                <p className="text-green-600 text-sm mt-1">Monorepo setup, UI components, basic routing</p>
-              </div>
-              <div className="bg-yellow-100 p-4 rounded-lg">
-                <h3 className="font-semibold text-yellow-800">🚧 In Progress</h3>
-                <p className="text-yellow-600 text-sm mt-1">Database setup, authentication system</p>
-              </div>
-              <div className="bg-blue-100 p-4 rounded-lg">
-                <h3 className="font-semibold text-blue-800">📋 Planned</h3>
-                <p className="text-blue-600 text-sm mt-1">Real-time sync, AI suggestions, mobile app</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -362,17 +301,6 @@ function LoginPage() {
           </div>
         </form>
       </div>
-    </div>
-  );
-}
-
-function HouseholdPage() {
-  return (
-    <div>
-      <h2 className="text-2xl font-bold mb-6">Household Management</h2>
-      <p className="text-muted-foreground">
-        Household management features coming soon...
-      </p>
     </div>
   );
 }

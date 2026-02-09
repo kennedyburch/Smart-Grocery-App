@@ -1,0 +1,131 @@
+PANTRY PAL APP (Sarah is logged in)
+│
+├── 🏠 /dashboard (HOME/DASHBOARD)
+│   ├── Welcome Section
+│   │   └── "Hi Sarah! 👋" appears under the Pantry Pal and subline
+│   │
+│   ├── Quick Stats
+│   │   ├── 7 items on your list
+│   │   ├── Last shopped: 2 days ago
+│   │   └── No one shopping now... ready to go? (Button -> Start Shopping 🛒)
+│   │
+│   ├── Smart Suggestions (Top 3)
+│   │   ├── 🥛 Milk
+│   │   │   └── "Usually every 7 days. Last: 5 days ago"
+│   │   │   └── [Add to List]
+│   │   ├── ☕ Coffee Beans
+│   │   │   └── "Usually every 2 weeks"
+│   │   │   └── [Add to List]
+│   │   └── 🥚 Eggs
+│   │       └── "Running low based on your pattern"
+│   │       └── [Add to List]
+│   │
+│   ├── Recent Activity Feed
+│   │   ├── "Jamie added Tomatoes" (2 min ago)
+│   │   ├── "Alex checked off Bread" (1 hour ago)
+│   │   └── "You added Spinach" (3 hours ago)
+│   │
+│   ├── Quick Actions
+│   │   ├── [+ Add Item] → Modal opens
+│   │   └── [Start Shopping] → Goes to /shop tab
+│   │
+│   └── Who's Online
+│       ├── Sarah (You) 🟢
+│       ├── Jamie 🟢
+│       └── Alex 🔴 (offline)
+│
+├── 📝 /list (LIST TAB)
+│   ├── Header Actions
+│   │   ├── Search bar
+│   │   ├── Filter dropdown (All / By Person / By Category)
+│   │   └── [+ Add Item] button
+│   │
+│   ├── Shopping List (Grouped by Category)
+│   │   │
+│   │   ├── 🥬 PRODUCE (3 items)
+│   │   │   ├── ☐ Spinach
+│   │   │   │   └── Added by Sarah • 3 hours ago
+│   │   │   │   └── Actions: [Edit] [Delete]
+│   │   │   ├── ☐ Tomatoes  
+│   │   │   │   └── Added by Jamie • 2 min ago
+│   │   │   └── ☐ Onions
+│   │   │       └── Added by Alex • Yesterday
+│   │   │
+│   │   ├── 🥛 DAIRY (2 items)
+│   │   │   ├── ☐ Milk
+│   │   │   │   └── Added by Sarah • Just now
+│   │   │   └── ☐ Yogurt
+│   │   │       └── Added by Jamie • 1 hour ago
+│   │   │
+│   │   ├── 🍖 MEAT (1 item)
+│   │   │   └── ☐ Chicken Breast
+│   │   │       └── Added by Alex • 2 days ago
+│   │   │
+│   │   └── 🥫 PANTRY (1 item)
+│   │       └── ☐ Olive Oil
+│   │           └── Added by Sarah • Yesterday
+│   │
+│   ├── Empty State (if no items)
+│   │   └── "Your list is empty!"
+│   │   └── [+ Add your first item]
+│   │
+│   └── Floating [+] Button (always visible)
+│       └── Opens Add Item Modal
+│
+├── 🛒 /shop (SHOP TAB)
+│   ├── Shopping Status Bar
+│   │   ├── Not Shopping:
+│   │   │   └── "Ready to shop?"
+│   │   │   └── [Start Shopping] button
+│   │   │
+│   │   └── Sarah Shopping:
+│   │       └── "You're shopping! 🛒"
+│   │       └── Progress: 4 of 7 items
+│   │       └── [Done Shopping] button
+│   │
+│   ├── Someone Else Shopping:
+│   │   └── Banner: "No one is shopping right now 🛒"
+│   │
+│   ├── Shopping List
+│   │   │
+│   │   ├── 🥬 PRODUCE
+│   │   │   ├── ☑ Spinach (checked)
+│   │   │   ├── ☑ Tomatoes (checked)
+│   │   │   └── ☐ Onions
+│   │   │
+│   │   ├── 🥛 DAIRY
+│   │   │   ├── ☑ Milk (checked)
+│   │   │   └── ☐ Yogurt
+│   │   │
+│   │   └── 🥫 PANTRY
+│   │       └── ☐ Olive Oil
+│   │
+│   ├── Quick Add Button
+│   │   └── [+ Forgot something?]
+│   │   └── Opens quick-add modal
+│   │
+│   └── Empty State
+│       └── "No items to shop for!"
+│       └── "Add items in the List tab"
+│
+├── 📊 /recent (RECENT PURCHASES TAB)
+│   ├── Time Filter
+│   │   ├── [All Time]
+│   │   ├── [This Week] ←selected
+│   │   ├── [This Month]
+│   │   └── [Custom Range]
+│   │
+│   ├── Person Filter
+│   │   ├── [Everyone] ←selected
+│   │   ├── [Sarah (You)]
+│   │   ├── [Jamie]
+│   │   └── [Alex]
+│   │
+│   ├── Shopping Sessions (Timeline)
+│   │   │
+│   │   ├── Today
+│   │   │   └── No trips yet
+│   │   │
+│   │   ├── 2 Days Ago (Thu, Feb 4)
+│   │   │   └── Shopping Trip
+│   │   │       ├── 🛒
