@@ -1,7 +1,7 @@
 {
-  "name": "smartcart",
+  "name": "pantry-pal",
   "version": "1.0.0",
-  "description": "SmartCart - Shared Grocery List with AI-powered suggestions",
+  "description": "Pantry Pal - Your Smart Grocery Companion for household coordination",
   "type": "module",
   "scripts": {
     "dev": "vite",
