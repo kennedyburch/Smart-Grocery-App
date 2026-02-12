@@ -96,7 +96,7 @@ let mockItems: GroceryItem[] = [
     name: 'Yogurt',
     category: 'Dairy',
     addedBy: 'jamie-002',
-    addedAt: '2026-02-08T05:00:00Z', // 3 hours ago
+    addedAt: '2026-02-08T05:00:00Z',
     isCompleted: false,
     householdId: 'apartment-household-1'
   },
@@ -105,7 +105,7 @@ let mockItems: GroceryItem[] = [
     name: 'Cherry Tomatoes',
     category: 'Produce',
     addedBy: 'jamie-002',
-    addedAt: '2026-02-07T08:00:00Z', // Yesterday
+    addedAt: '2026-02-07T08:00:00Z',
     isCompleted: false,
     householdId: 'apartment-household-1'
   },
@@ -114,7 +114,7 @@ let mockItems: GroceryItem[] = [
     name: 'Rice',
     category: 'Pantry',
     addedBy: 'alex-003',
-    addedAt: '2026-02-07T10:00:00Z', // 1 day ago
+    addedAt: '2026-02-07T10:00:00Z',
     isCompleted: false,
     householdId: 'apartment-household-1'
   }
@@ -151,22 +151,6 @@ let mockPurchaseHistory: PurchaseHistory[] = [
     category: 'Dairy',
     purchasedBy: 'sarah-001', 
     purchasedAt: '2026-01-23T10:00:00Z', // 14 days ago
-    householdId: 'apartment-household-1'
-  },
-  {
-    id: 'hist-5',
-    itemName: 'Bananas',
-    category: 'Produce',
-    purchasedBy: 'jamie-002',
-    purchasedAt: '2026-01-31T14:00:00Z', // 6 days ago
-    householdId: 'apartment-household-1'
-  },
-  {
-    id: 'hist-6',
-    itemName: 'Chicken Thighs',
-    category: 'Meat',
-    purchasedBy: 'alex-003',
-    purchasedAt: '2026-01-29T16:00:00Z', // 8 days ago
     householdId: 'apartment-household-1'
   }
 ];
@@ -274,5 +258,80 @@ export const mockGroceryAPI = {
     return [...mockPurchaseHistory].sort((a, b) => 
       new Date(b.purchasedAt).getTime() - new Date(a.purchasedAt).getTime()
     );
+  },
+
+  // Reset the entire experience to initial state
+  resetExperience: async (): Promise<void> => {
+    await new Promise(resolve => setTimeout(resolve, 300));
+    
+    // Reset shopping list to initial 7 items
+    mockItems = [
+      {
+        id: 'item-1',
+        name: 'Olive Oil',
+        category: 'Pantry',
+        addedBy: 'alex-003',
+        addedAt: '2026-02-06T09:00:00Z',
+        isCompleted: false,
+        householdId: 'apartment-household-1'
+      },
+      {
+        id: 'item-2', 
+        name: 'Butter',
+        category: 'Dairy',
+        addedBy: 'alex-003',
+        addedAt: '2026-02-06T09:15:00Z',
+        isCompleted: false,
+        householdId: 'apartment-household-1'
+      },
+      {
+        id: 'item-3',
+        name: 'Chicken Thighs', 
+        category: 'Meat',
+        addedBy: 'alex-003',
+        addedAt: '2026-02-06T09:30:00Z',
+        isCompleted: false,
+        householdId: 'apartment-household-1'
+      },
+      {
+        id: 'item-4',
+        name: 'Bananas',
+        category: 'Produce', 
+        addedBy: 'jamie-002',
+        addedAt: '2026-02-06T10:00:00Z',
+        isCompleted: false,
+        householdId: 'apartment-household-1'
+      },
+      {
+        id: 'item-5',
+        name: 'Yogurt',
+        category: 'Dairy',
+        addedBy: 'jamie-002',
+        addedAt: '2026-02-08T05:00:00Z',
+        isCompleted: false,
+        householdId: 'apartment-household-1'
+      },
+      {
+        id: 'item-6',
+        name: 'Cherry Tomatoes',
+        category: 'Produce',
+        addedBy: 'jamie-002',
+        addedAt: '2026-02-07T08:00:00Z',
+        isCompleted: false,
+        householdId: 'apartment-household-1'
+      },
+      {
+        id: 'item-7',
+        name: 'Rice',
+        category: 'Pantry',
+        addedBy: 'alex-003',
+        addedAt: '2026-02-07T10:00:00Z',
+        isCompleted: false,
+        householdId: 'apartment-household-1'
+      }
+    ];
+
+    // Clear all purchase history
+    mockPurchaseHistory = [];
   }
 };

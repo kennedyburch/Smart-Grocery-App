@@ -22,23 +22,23 @@ export const DashboardPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <p className="text-slate-600">Loading dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Header */}
         <div className="mb-8 flex items-center justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">Hello, Sarah! 👋</h1>
-            <p className="text-gray-600 mt-2">Ready to manage your grocery list?</p>
+            <h1 className="text-3xl font-bold text-slate-900">Hello, Sarah! 👋</h1>
+            <p className="text-slate-600 mt-2">Ready to manage your grocery list?</p>
           </div>
           <Link 
             to="/shop"
@@ -53,51 +53,51 @@ export const DashboardPage: React.FC = () => {
           {/* Top Row: Your Household and Smart Suggestions */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Your Household */}
-            <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">Your Household</h3>
+            <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
+              <h3 className="text-lg font-semibold text-slate-900 mb-4">Your Household</h3>
               <div className="space-y-3">
                 <div className="flex items-center p-3 bg-teal-50 rounded-lg">
                   <ShoppingCart className="h-5 w-5 text-teal-500 mr-3" />
-                  <span className="text-sm font-medium text-gray-900">7 items on your list</span>
+                  <span className="text-sm font-medium text-slate-900">7 items on your list</span>
                 </div>
                 
                 <div className="flex items-center p-3 bg-blue-50 rounded-lg">
                   <Clock className="h-5 w-5 text-blue-500 mr-3" />
-                  <span className="text-sm font-medium text-gray-900">Last shopped: 2 days ago</span>
+                  <span className="text-sm font-medium text-slate-900">Last shopped: 2 days ago</span>
                 </div>
                 
                 <div className="flex items-center p-3 bg-yellow-50 rounded-lg">
                   <span className="text-yellow-500 mr-3">💡</span>
-                  <span className="text-sm font-medium text-gray-900">3 new suggestions</span>
+                  <span className="text-sm font-medium text-slate-900">3 new suggestions</span>
                 </div>
                 
-                <div className="flex items-center p-3 bg-gray-100 rounded-lg">
+                <div className="flex items-center p-3 bg-slate-100 rounded-lg">
                   <span className="text-green-500 mr-3">✅</span>
-                  <span className="text-sm font-medium text-gray-900">12 items bought this week</span>
+                  <span className="text-sm font-medium text-slate-900">12 items bought this week</span>
                 </div>
                 
                 <div className="flex items-center p-3 bg-purple-100 rounded-lg">
                   <span className="text-purple-500 mr-3">💰</span>
-                  <span className="text-sm font-medium text-gray-900">Total estimated spend: $87</span>
+                  <span className="text-sm font-medium text-slate-900">Total estimated spend: $87</span>
                 </div>
               </div>
             </div>
 
             {/* Smart Suggestions */}
-            <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+            <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+                <h3 className="text-lg font-semibold text-slate-900 flex items-center">
                   <TrendingUp className="h-5 w-5 text-teal-500 mr-2" />
                   Smart Suggestions (Top 3)
                 </h3>
               </div>
               
               <div className="space-y-4">
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                   <div>
-                    <p className="font-medium text-gray-900">🥛 Milk</p>
-                    <p className="text-sm text-gray-600">Usually every 7 days</p>
-                    <p className="text-sm text-gray-600">Last: 5 days ago</p>
+                    <p className="font-medium text-slate-900">🥛 Milk</p>
+                    <p className="text-sm text-slate-600">Usually every 7 days</p>
+                    <p className="text-sm text-slate-600">Last: 5 days ago</p>
                   </div>
                   <button
                     className="bg-teal-500 text-white px-3 py-1 rounded-md text-sm hover:bg-teal-600 transition-colors whitespace-nowrap"
@@ -106,11 +106,11 @@ export const DashboardPage: React.FC = () => {
                   </button>
                 </div>
                 
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                   <div>
-                    <p className="font-medium text-gray-900">☕ Coffee</p>
-                    <p className="text-sm text-gray-600">Usually every 2 weeks</p>
-                    <p className="text-sm text-gray-600">Last: 2 weeks ago</p>
+                    <p className="font-medium text-slate-900">☕ Coffee</p>
+                    <p className="text-sm text-slate-600">Usually every 2 weeks</p>
+                    <p className="text-sm text-slate-600">Last: 2 weeks ago</p>
                   </div>
                   <button
                     className="bg-teal-500 text-white px-3 py-1 rounded-md text-sm hover:bg-teal-600 transition-colors whitespace-nowrap"
@@ -119,10 +119,10 @@ export const DashboardPage: React.FC = () => {
                   </button>
                 </div>
                 
-                <div className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                <div className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                   <div>
-                    <p className="font-medium text-gray-900">🥚 Eggs</p>
-                    <p className="text-sm text-gray-600">Running low based on your recipes this week</p>
+                    <p className="font-medium text-slate-900">🥚 Eggs</p>
+                    <p className="text-sm text-slate-600">Running low based on your recipes this week</p>
                   </div>
                   <button
                     className="bg-teal-500 text-white px-3 py-1 rounded-md text-sm hover:bg-teal-600 transition-colors whitespace-nowrap"
@@ -138,9 +138,9 @@ export const DashboardPage: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
           {/* Recent Activity Feed */}
-          <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+          <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+              <h3 className="text-lg font-semibold text-slate-900 flex items-center">
                 <Clock className="h-5 w-5 text-teal-500 mr-2" />
                 Recent Activity (Last 24hrs)
               </h3>
@@ -153,9 +153,9 @@ export const DashboardPage: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm">
-                    <span className="font-medium text-gray-900">Jamie</span> added <span className="font-medium">Tomatoes</span>
+                    <span className="font-medium text-slate-900">Jamie</span> added <span className="font-medium">Tomatoes</span>
                   </p>
-                  <p className="text-xs text-gray-500">2 min ago</p>
+                  <p className="text-xs text-slate-500">2 min ago</p>
                 </div>
               </div>
               
@@ -165,9 +165,9 @@ export const DashboardPage: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm">
-                    <span className="font-medium text-gray-900">Alex</span> checked off <span className="font-medium">Bread</span>
+                    <span className="font-medium text-slate-900">Alex</span> checked off <span className="font-medium">Bread</span>
                   </p>
-                  <p className="text-xs text-gray-500">1 hour ago</p>
+                  <p className="text-xs text-slate-500">1 hour ago</p>
                 </div>
               </div>
               
@@ -177,9 +177,9 @@ export const DashboardPage: React.FC = () => {
                 </div>
                 <div className="flex-1">
                   <p className="text-sm">
-                    <span className="font-medium text-gray-900">You</span> added <span className="font-medium">Spinach</span>
+                    <span className="font-medium text-slate-900">You</span> added <span className="font-medium">Spinach</span>
                   </p>
-                  <p className="text-xs text-gray-500">3 hours ago</p>
+                  <p className="text-xs text-slate-500">3 hours ago</p>
                 </div>
               </div>
             </div>
@@ -192,29 +192,29 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           {/* Who's Online */}
-          <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center">
               <Users className="h-5 w-5 text-purple-500 mr-2" />
               Who's Online (Family & Roommates)
             </h3>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-900 font-medium">You (Sarah)</span>
+                <span className="text-sm text-slate-900 font-medium">You (Sarah)</span>
                 <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                   🟢 Online
                 </span>
               </div>
               
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-900">Jamie</span>
-                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                <span className="text-sm text-slate-900">Jamie</span>
+                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
                   ⚫ Last seen: 2 min ago
                 </span>
               </div>
               
               <div className="flex items-center justify-between">
-                <span className="text-sm text-gray-900">Alex</span>
-                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                <span className="text-sm text-slate-900">Alex</span>
+                <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-800">
                   ⚫ Last seen: 1 hour ago
                 </span>
               </div>

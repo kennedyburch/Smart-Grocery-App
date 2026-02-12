@@ -6,6 +6,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import ListPage from './pages/ListPage.tsx';
 import ShopPage from './pages/ShopPage.tsx';
 import RecentPage from './pages/RecentPage.tsx';
+import DesignDNAPage from './pages/DesignDNAPage.tsx';
 import { ProtectedRoute, PublicOnlyRoute } from './components/ProtectedRoute';
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
               <RecentPage />
             </ProtectedRoute>
           } />
+          <Route path="/design-dna" element={<DesignDNAPage />} />
         </Routes>
       </div>
     </Router>
@@ -65,7 +67,7 @@ function Navigation() {
   };
 
   return (
-    <nav className="bg-white shadow-lg border-b border-gray-100">
+    <nav className="sticky top-0 z-50 bg-white shadow-lg border-b border-slate-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
@@ -119,7 +121,17 @@ function Navigation() {
                       : 'text-slate-500 hover:text-slate-800'
                   }`}
                 >
-                  📊 Recent
+                  📊 Recent purchases
+                </Link>
+                <Link 
+                  to="/design-dna"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === '/design-dna' 
+                      ? 'bg-purple-100 text-purple-700' 
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  🎨 Behind the Design
                 </Link>
                 <div className="flex items-center space-x-3">
                   <span className="text-sm text-slate-600">Hi, {user.name}</span>
@@ -202,7 +214,7 @@ function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full space-y-8">
         <div>
           <div className="mx-auto h-12 w-12 bg-teal-500 rounded-lg flex items-center justify-center">

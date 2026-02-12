@@ -235,7 +235,7 @@ const ShoppingListPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500 mx-auto"></div>
           <p className="mt-4 text-slate-600">Loading your list...</p>
@@ -248,7 +248,7 @@ const ShoppingListPage: React.FC = () => {
   const totalItemsCount = items.length;
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       {/* Header */}
       <div className="bg-white shadow-sm border-b sticky top-0 z-10">
         <div className="max-w-2xl mx-auto px-4 py-4">
@@ -343,7 +343,7 @@ const ShoppingListPage: React.FC = () => {
                       </button>
                       <button
                         onClick={() => dismissSuggestion(index)}
-                        className="bg-gray-300 hover:bg-gray-400 text-gray-700 px-3 py-1 rounded text-sm"
+                        className="bg-slate-300 hover:bg-slate-400 text-slate-700 px-3 py-1 rounded text-sm"
                       >
                         Skip
                       </button>
@@ -356,7 +356,7 @@ const ShoppingListPage: React.FC = () => {
         )}
 
         {/* Add New Item */}
-        <div className="mb-6 bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="mb-6 bg-white rounded-lg shadow-sm border border-slate-200 p-4">
           <div className="flex space-x-3">
             <input
               type="text"
@@ -364,13 +364,13 @@ const ShoppingListPage: React.FC = () => {
               onChange={(e) => setNewItemName(e.target.value)}
               onKeyPress={(e) => e.key === 'Enter' && addItem(newItemName)}
               placeholder="Add an item (e.g., milk, eggs, coffee)..."
-              className="flex-1 border border-gray-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+              className="flex-1 border border-slate-300 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
               disabled={isAddingItem}
             />
             <button
               onClick={() => addItem(newItemName)}
               disabled={isAddingItem || !newItemName.trim()}
-              className="bg-teal-600 hover:bg-teal-700 disabled:bg-gray-300 text-white px-6 py-3 rounded-lg font-medium flex items-center"
+              className="bg-teal-600 hover:bg-teal-700 disabled:bg-slate-300 text-white px-6 py-3 rounded-lg font-medium flex items-center"
             >
               {isAddingItem ? (
                 <div className="animate-spin rounded-full h-4 w-4 border-2 border-white border-t-transparent"></div>
@@ -382,8 +382,8 @@ const ShoppingListPage: React.FC = () => {
         </div>
 
         {/* Shopping List */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className="px-4 py-4 border-b border-gray-200">
+        <div className="bg-white rounded-lg shadow-sm border border-slate-200">
+          <div className="px-4 py-4 border-b border-slate-200">
             <h2 className="text-lg font-medium text-slate-900">
               📝 Shopping List ({items.filter(item => !item.isChecked).length})
             </h2>
@@ -396,7 +396,7 @@ const ShoppingListPage: React.FC = () => {
               <p className="mt-1 text-sm text-slate-500">Add your first item to get started!</p>
             </div>
           ) : (
-            <div className="divide-y divide-gray-200">
+            <div className="divide-y divide-slate-200">
               {Object.entries(groupedItems).map(([category, categoryItems]) => (
                 <div key={category} className="p-4">
                   <h4 className="text-sm font-medium text-slate-700 mb-3">
@@ -409,7 +409,7 @@ const ShoppingListPage: React.FC = () => {
                         className={`flex items-center p-3 rounded-lg border transition-colors ${
                           item.isChecked 
                             ? 'bg-green-50 border-green-200' 
-                            : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
+                            : 'bg-slate-50 border-slate-200 hover:bg-slate-100'
                         }`}
                       >
                         <button
@@ -417,14 +417,14 @@ const ShoppingListPage: React.FC = () => {
                           className={`mr-3 w-5 h-5 rounded border-2 flex items-center justify-center ${
                             item.isChecked
                               ? 'bg-green-600 border-green-600 text-white'
-                              : 'border-gray-300 hover:border-teal-500'
+                              : 'border-slate-300 hover:border-teal-500'
                           }`}
                         >
                           {item.isChecked && <Check className="h-3 w-3" />}
                         </button>
                         
                         <div className="flex-1">
-                          <span className={`font-medium ${item.isChecked ? 'line-through text-gray-500' : 'text-slate-900'}`}>
+                          <span className={`font-medium ${item.isChecked ? 'line-through text-slate-500' : 'text-slate-900'}`}>
                             {item.name}
                           </span>
                           <div className="text-xs text-slate-500 mt-1">
@@ -442,7 +442,7 @@ const ShoppingListPage: React.FC = () => {
 
         {/* Purchase History */}
         {purchaseHistory.length > 0 && (
-          <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+          <div className="mt-6 bg-white rounded-lg shadow-sm border border-slate-200 p-4">
             <h3 className="text-lg font-medium text-slate-900 mb-3">
               📋 Recent Purchases (Last 30 Days)
             </h3>
@@ -456,11 +456,11 @@ const ShoppingListPage: React.FC = () => {
                 const timeAgo = Math.floor((new Date().getTime() - new Date(purchase.purchasedAt).getTime()) / (1000 * 60 * 60 * 24));
                 
                 return (
-                  <div key={purchase.id} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-b-0">
+                  <div key={purchase.id} className="flex items-center justify-between py-2 border-b border-slate-100 last:border-b-0">
                     <div className="flex items-center">
-                      <span className="text-gray-400 mr-2">✓</span>
+                      <span className="text-slate-400 mr-2">✓</span>
                       <span className="text-sm text-slate-700">{purchase.itemName}</span>
-                      <span className="ml-2 text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-full">
+                      <span className="ml-2 text-xs bg-slate-100 text-slate-600 px-2 py-1 rounded-full">
                         {purchase.category}
                       </span>
                     </div>
@@ -475,13 +475,13 @@ const ShoppingListPage: React.FC = () => {
               const daysSince = Math.floor((new Date().getTime() - new Date(purchase.purchasedAt).getTime()) / (1000 * 60 * 60 * 24));
               return daysSince <= 30;
             }).length === 0 && (
-              <p className="text-sm text-gray-500 text-center py-4">No purchases in the last 30 days</p>
+              <p className="text-sm text-slate-500 text-center py-4">No purchases in the last 30 days</p>
             )}
           </div>
         )}
 
         {/* Roommates */}
-        <div className="mt-6 bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+        <div className="mt-6 bg-white rounded-lg shadow-sm border border-slate-200 p-4">
           <h3 className="text-sm font-medium text-slate-700 mb-2 flex items-center">
             <Users className="h-4 w-4 mr-2" />
             Roommates

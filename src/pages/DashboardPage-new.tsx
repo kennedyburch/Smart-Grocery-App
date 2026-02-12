@@ -105,25 +105,25 @@ export const DashboardPage: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading dashboard...</p>
+          <p className="text-slate-600">Loading dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       {/* Header Section */}
-      <div className="bg-white shadow-sm border-b border-gray-100">
+      <div className="bg-white shadow-sm border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900">Pantry Pal</h1>
-            <p className="text-gray-600 mt-1">Simple Shared Lists</p>
+            <h1 className="text-3xl font-bold text-slate-900">Pantry Pal</h1>
+            <p className="text-slate-600 mt-1">Simple Shared Lists</p>
             <div className="mt-4">
-              <h2 className="text-xl text-gray-800">Hi {user?.name}! 👋</h2>
+              <h2 className="text-xl text-slate-800">Hi {user?.name}! 👋</h2>
             </div>
           </div>
         </div>
@@ -132,33 +132,33 @@ export const DashboardPage: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Quick Stats */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+          <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
             <div className="flex items-center">
               <ShoppingCart className="h-8 w-8 text-teal-500" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-500">Items on List</p>
-                <p className="text-2xl font-bold text-gray-900">{items.length}</p>
+                <p className="text-sm font-medium text-slate-500">Items on List</p>
+                <p className="text-2xl font-bold text-slate-900">{items.length}</p>
               </div>
             </div>
           </div>
           
-          <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+          <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
             <div className="flex items-center">
               <Clock className="h-8 w-8 text-blue-500" />
               <div className="ml-4">
-                <p className="text-sm font-medium text-gray-500">Last Shopped</p>
-                <p className="text-2xl font-bold text-gray-900">2 days ago</p>
+                <p className="text-sm font-medium text-slate-500">Last Shopped</p>
+                <p className="text-2xl font-bold text-slate-900">2 days ago</p>
               </div>
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+          <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <Users className="h-8 w-8 text-purple-500" />
                 <div className="ml-4">
-                  <p className="text-sm font-medium text-gray-500">Shopping Status</p>
-                  <p className="text-lg font-semibold text-gray-900">No one shopping</p>
+                  <p className="text-sm font-medium text-slate-500">Shopping Status</p>
+                  <p className="text-lg font-semibold text-slate-900">No one shopping</p>
                 </div>
               </div>
               <Link 
@@ -173,9 +173,9 @@ export const DashboardPage: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Smart Suggestions */}
-          <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
+          <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-lg font-semibold text-gray-900 flex items-center">
+              <h3 className="text-lg font-semibold text-slate-900 flex items-center">
                 <TrendingUp className="h-5 w-5 text-teal-500 mr-2" />
                 Smart Suggestions
               </h3>
@@ -184,14 +184,14 @@ export const DashboardPage: React.FC = () => {
             <div className="space-y-4">
               {suggestions.length > 0 ? (
                 suggestions.map((suggestion) => (
-                  <div key={suggestion.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                  <div key={suggestion.id} className="flex items-center justify-between p-4 bg-slate-50 rounded-lg">
                     <div>
-                      <p className="font-medium text-gray-900">
+                      <p className="font-medium text-slate-900">
                         {suggestion.itemName === 'Milk' ? '🥛' : 
                          suggestion.itemName === 'Coffee Beans' ? '☕' :
                          suggestion.itemName === 'Eggs' ? '🥚' : '📦'} {suggestion.itemName}
                       </p>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-slate-600">
                         {suggestion.itemName === 'Milk' ? 'Usually every 7 days. Last: 5 days ago' :
                          suggestion.itemName === 'Coffee Beans' ? 'Usually every 2 weeks' :
                          'Running low based on your pattern'}
@@ -206,14 +206,14 @@ export const DashboardPage: React.FC = () => {
                   </div>
                 ))
               ) : (
-                <p className="text-gray-500 text-center py-4">No suggestions right now</p>
+                <p className="text-slate-500 text-center py-4">No suggestions right now</p>
               )}
             </div>
           </div>
 
           {/* Recent Activity Feed */}
-          <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center">
               <Clock className="h-5 w-5 text-blue-500 mr-2" />
               Recent Activity
             </h3>
@@ -223,23 +223,23 @@ export const DashboardPage: React.FC = () => {
                 recentActivity.map((activity, index) => (
                   <div key={index} className="flex items-center justify-between py-2">
                     <div>
-                      <p className="text-sm text-gray-900">
+                      <p className="text-sm text-slate-900">
                         <span className="font-medium">{activity.user}</span> added{' '}
                         <span className="font-medium">{activity.item}</span>
                       </p>
-                      <p className="text-xs text-gray-500">{activity.time}</p>
+                      <p className="text-xs text-slate-500">{activity.time}</p>
                     </div>
                   </div>
                 ))
               ) : (
-                <p className="text-gray-500 text-center py-4">No recent activity</p>
+                <p className="text-slate-500 text-center py-4">No recent activity</p>
               )}
             </div>
           </div>
 
           {/* Quick Actions */}
-          <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Quick Actions</h3>
+          <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4">Quick Actions</h3>
             <div className="space-y-3">
               <Link 
                 to="/list"
@@ -259,15 +259,15 @@ export const DashboardPage: React.FC = () => {
           </div>
 
           {/* Who's Online */}
-          <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-100">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4 flex items-center">
+          <div className="bg-white rounded-lg shadow-sm p-6 border border-slate-100">
+            <h3 className="text-lg font-semibold text-slate-900 mb-4 flex items-center">
               <Users className="h-5 w-5 text-purple-500 mr-2" />
               Who's Online
             </h3>
             <div className="space-y-2">
               {getOnlineStatus().map((person, index) => (
                 <div key={index} className="flex items-center justify-between">
-                  <span className="text-sm text-gray-900">{person.name}</span>
+                  <span className="text-sm text-slate-900">{person.name}</span>
                   <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
                     person.online 
                       ? 'bg-green-100 text-green-800' 

@@ -81,7 +81,7 @@ const HouseholdPage: React.FC = () => {
 
   if (isLoading && households.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500 mx-auto"></div>
           <p className="mt-4 text-slate-600">Loading households...</p>
@@ -91,7 +91,7 @@ const HouseholdPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-slate-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="sm:flex sm:items-center sm:justify-between">
@@ -104,7 +104,7 @@ const HouseholdPage: React.FC = () => {
           <div className="mt-4 sm:mt-0 sm:flex-shrink-0 space-x-3">
             <button
               onClick={() => setShowJoinModal(true)}
-              className="inline-flex items-center px-4 py-2 border border-gray-300 rounded-md shadow-sm bg-white text-sm font-medium text-slate-700 hover:bg-gray-50"
+              className="inline-flex items-center px-4 py-2 border border-slate-300 rounded-md shadow-sm bg-white text-sm font-medium text-slate-700 hover:bg-slate-50"
             >
               <UserPlus className="h-4 w-4 mr-2" />
               Join Household
@@ -162,12 +162,12 @@ const HouseholdPage: React.FC = () => {
                   <div className="flex space-x-2">
                     <button
                       onClick={() => setShowInviteModal(true)}
-                      className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-slate-700 bg-white hover:bg-gray-50"
+                      className="inline-flex items-center px-3 py-2 border border-slate-300 shadow-sm text-sm leading-4 font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50"
                     >
                       <UserPlus className="h-4 w-4 mr-2" />
                       Invite
                     </button>
-                    <button className="inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-slate-700 bg-white hover:bg-gray-50">
+                    <button className="inline-flex items-center px-3 py-2 border border-slate-300 shadow-sm text-sm leading-4 font-medium rounded-md text-slate-700 bg-white hover:bg-slate-50">
                       <Settings className="h-4 w-4 mr-2" />
                       Settings
                     </button>
@@ -199,7 +199,7 @@ const HouseholdPage: React.FC = () => {
                   className={`relative bg-white p-6 rounded-lg shadow hover:shadow-md transition-shadow cursor-pointer border-2 ${
                     currentHousehold?.id === household.id
                       ? 'border-teal-500 bg-teal-50'
-                      : 'border-gray-200 hover:border-gray-300'
+                      : 'border-slate-200 hover:border-slate-300'
                   }`}
                   onClick={() => setCurrentHousehold(household.id)}
                 >
@@ -232,7 +232,7 @@ const HouseholdPage: React.FC = () => {
 
         {/* Create Household Modal */}
         {showCreateModal && (
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center p-4">
+          <div className="fixed inset-0 bg-slate-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center p-4">
             <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
               <h3 className="text-lg font-medium text-slate-900 mb-4">
                 Create New Household
@@ -247,7 +247,7 @@ const HouseholdPage: React.FC = () => {
                     id="name"
                     value={newHouseholdName}
                     onChange={(e) => setNewHouseholdName(e.target.value)}
-                    className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                    className="mt-1 block w-full border border-slate-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     placeholder="Enter household name"
                     required
                   />
@@ -261,7 +261,7 @@ const HouseholdPage: React.FC = () => {
                     value={newHouseholdDescription}
                     onChange={(e) => setNewHouseholdDescription(e.target.value)}
                     rows={3}
-                    className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                    className="mt-1 block w-full border border-slate-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     placeholder="Enter household description"
                   />
                 </div>
@@ -269,7 +269,7 @@ const HouseholdPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setShowCreateModal(false)}
-                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-gray-50"
+                    className="px-4 py-2 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50"
                   >
                     Cancel
                   </button>
@@ -288,7 +288,7 @@ const HouseholdPage: React.FC = () => {
 
         {/* Join Household Modal */}
         {showJoinModal && (
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center p-4">
+          <div className="fixed inset-0 bg-slate-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center p-4">
             <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
               <h3 className="text-lg font-medium text-slate-900 mb-4">
                 Join Household
@@ -303,7 +303,7 @@ const HouseholdPage: React.FC = () => {
                     id="inviteCode"
                     value={inviteCode}
                     onChange={(e) => setInviteCode(e.target.value.toUpperCase())}
-                    className="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
+                    className="mt-1 block w-full border border-slate-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500"
                     placeholder="Enter 6-character invite code"
                     maxLength={6}
                     required
@@ -313,7 +313,7 @@ const HouseholdPage: React.FC = () => {
                   <button
                     type="button"
                     onClick={() => setShowJoinModal(false)}
-                    className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-gray-50"
+                    className="px-4 py-2 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50"
                   >
                     Cancel
                   </button>
@@ -332,7 +332,7 @@ const HouseholdPage: React.FC = () => {
 
         {/* Invite Modal */}
         {showInviteModal && currentHousehold && (
-          <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center p-4">
+          <div className="fixed inset-0 bg-slate-600 bg-opacity-50 overflow-y-auto h-full w-full flex items-center justify-center p-4">
             <div className="bg-white p-6 rounded-lg shadow-xl w-full max-w-md">
               <h3 className="text-lg font-medium text-slate-900 mb-4">
                 Invite Members to {currentHousehold.name}
@@ -346,11 +346,11 @@ const HouseholdPage: React.FC = () => {
                     type="text"
                     value={currentHousehold.inviteCode}
                     readOnly
-                    className="block w-full border border-gray-300 rounded-md px-3 py-2 bg-gray-50 text-center font-mono text-lg tracking-wider"
+                    className="block w-full border border-slate-300 rounded-md px-3 py-2 bg-slate-50 text-center font-mono text-lg tracking-wider"
                   />
                   <button
                     onClick={copyInviteCode}
-                    className="px-3 py-2 border border-gray-300 rounded-md hover:bg-gray-50"
+                    className="px-3 py-2 border border-slate-300 rounded-md hover:bg-slate-50"
                     title="Copy to clipboard"
                   >
                     <Copy className="h-4 w-4" />
@@ -363,7 +363,7 @@ const HouseholdPage: React.FC = () => {
               <div className="flex justify-between">
                 <button
                   onClick={handleGenerateNewInviteCode}
-                  className="px-4 py-2 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-gray-50"
+                  className="px-4 py-2 border border-slate-300 rounded-md shadow-sm text-sm font-medium text-slate-700 bg-white hover:bg-slate-50"
                 >
                   Generate New Code
                 </button>

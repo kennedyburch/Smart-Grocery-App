@@ -154,33 +154,33 @@ export function ListPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-teal-500 mx-auto mb-4"></div>
-          <p className="text-gray-600">Loading items...</p>
+          <p className="text-slate-600">Loading items...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b border-gray-100">
+      <div className="bg-white shadow-sm border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <div className="flex items-center justify-between">
             {/* Title */}
-            <h1 className="text-2xl font-bold text-gray-900">📝 Shopping List</h1>
+            <h1 className="text-2xl font-bold text-slate-900">📝 Shopping List</h1>
 
             {/* Search */}
             <div className="relative w-64">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-slate-400" />
               <input
                 type="text"
                 placeholder="Search your list..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
+                className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-lg focus:ring-teal-500 focus:border-teal-500"
               />
             </div>
           </div>
@@ -190,9 +190,9 @@ export function ListPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Smart Suggestions */}
         {availableSuggestions.length > 0 && (
-          <div className="mb-6 bg-white rounded-lg shadow-sm p-4 border border-gray-100">
+          <div className="mb-6 bg-white rounded-lg shadow-sm p-4 border border-slate-100">
             <div className="flex items-center justify-between mb-3">
-              <h3 className="text-base font-semibold text-gray-900 flex items-center">
+              <h3 className="text-base font-semibold text-slate-900 flex items-center">
                 <TrendingUp className="h-4 w-4 text-teal-500 mr-2" />
                 Smart Suggestions
               </h3>
@@ -200,12 +200,12 @@ export function ListPage() {
             
             <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
               {availableSuggestions.map((suggestion) => (
-                <div key={suggestion.name} className="flex items-center justify-between p-3 bg-gray-50 rounded-md">
+                <div key={suggestion.name} className="flex items-center justify-between p-3 bg-slate-50 rounded-md">
                   <div className="flex items-center space-x-2">
                     <span className="text-lg">{suggestion.emoji}</span>
                     <div>
-                      <p className="font-medium text-gray-900 text-sm">{suggestion.name}</p>
-                      <p className="text-xs text-gray-500">{suggestion.description}</p>
+                      <p className="font-medium text-slate-900 text-sm">{suggestion.name}</p>
+                      <p className="text-xs text-slate-500">{suggestion.description}</p>
                     </div>
                   </div>
                   <button
@@ -221,17 +221,17 @@ export function ListPage() {
         )}
 
         {filteredItems.length === 0 && items.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-100">
+          <div className="bg-white rounded-lg shadow-sm border border-slate-100">
             <div className="text-center py-12">
               <div className="text-6xl mb-4">📝</div>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">Your list is empty!</h3>
-              <p className="text-gray-600 mb-6">Add your first item below to get started</p>
+              <h3 className="text-lg font-medium text-slate-900 mb-2">Your list is empty!</h3>
+              <p className="text-slate-600 mb-6">Add your first item below to get started</p>
             </div>
             
             {/* Inline Add Item for Empty State */}
-            <div className="px-6 py-4 bg-gray-50 hover:bg-gray-100 transition-colors border-t border-gray-100">
+            <div className="px-6 py-4 bg-slate-50 hover:bg-slate-100 transition-colors border-t border-slate-100">
               <div className="flex items-center space-x-4">
-                <div className="w-6 h-6 border-2 border-gray-300 rounded-full hover:border-teal-500 transition-colors flex items-center justify-center">
+                <div className="w-6 h-6 border-2 border-slate-300 rounded-full hover:border-teal-500 transition-colors flex items-center justify-center">
                 </div>
                 <div className="flex-1">
                   <input
@@ -240,7 +240,7 @@ export function ListPage() {
                     value={newItemName}
                     onChange={(e) => setNewItemName(e.target.value)}
                     onKeyPress={handleInlineKeyPress}
-                    className="w-full bg-transparent border-none outline-none font-medium text-gray-700 text-lg placeholder-gray-400 focus:placeholder-gray-300"
+                    className="w-full bg-transparent border-none outline-none font-medium text-slate-700 text-lg placeholder-slate-400 focus:placeholder-slate-300"
                   />
                 </div>
               </div>
@@ -249,29 +249,29 @@ export function ListPage() {
         ) : filteredItems.length === 0 ? (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">🔍</div>
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No items match your search</h3>
-            <p className="text-gray-600">Try adjusting your search term</p>
+            <h3 className="text-lg font-medium text-slate-900 mb-2">No items match your search</h3>
+            <p className="text-slate-600">Try adjusting your search term</p>
           </div>
         ) : (
-          <div className="bg-white rounded-lg shadow-sm border border-gray-100">
-            <div className="px-6 py-4 border-b border-gray-100">
-              <h3 className="text-lg font-semibold text-gray-900">
+          <div className="bg-white rounded-lg shadow-sm border border-slate-100">
+            <div className="px-6 py-4 border-b border-slate-100">
+              <h3 className="text-lg font-semibold text-slate-900">
                 {filteredItems.length} item{filteredItems.length !== 1 ? 's' : ''} on your list
               </h3>
             </div>
-            <div className="divide-y divide-gray-100">
+            <div className="divide-y divide-slate-100">
               {filteredItems.map((item) => (
-                <div key={item.id} className="px-6 py-4 flex items-center justify-between hover:bg-gray-50">
+                <div key={item.id} className="px-6 py-4 flex items-center justify-between hover:bg-slate-50">
                   <div className="flex items-center space-x-4 flex-1">
                     <button 
                       onClick={() => toggleItem()}
-                      className="w-6 h-6 border-2 border-gray-300 rounded-full hover:border-teal-500 transition-colors flex items-center justify-center"
+                      className="w-6 h-6 border-2 border-slate-300 rounded-full hover:border-teal-500 transition-colors flex items-center justify-center"
                     >
                       {/* Checkbox circle */}
                     </button>
                     <div className="flex-1">
-                      <p className="font-medium text-gray-900 text-lg">{item.name}</p>
-                      <p className="text-sm text-gray-500">
+                      <p className="font-medium text-slate-900 text-lg">{item.name}</p>
+                      <p className="text-sm text-slate-500">
                         Added by {getUserName(item.addedBy)} • {getTimeAgo(item.addedAt)}
                       </p>
                     </div>
@@ -279,18 +279,18 @@ export function ListPage() {
                   <div className="flex items-center space-x-2">
                     <button 
                       onClick={() => deleteItem(item.id)}
-                      className="p-2 hover:bg-gray-100 rounded transition-colors"
+                      className="p-2 hover:bg-slate-100 rounded transition-colors"
                     >
-                      <Trash2 className="h-4 w-4 text-gray-400 hover:text-red-600" />
+                      <Trash2 className="h-4 w-4 text-slate-400 hover:text-red-600" />
                     </button>
                   </div>
                 </div>
               ))}
               
               {/* Inline Add Item */}
-              <div className="px-6 py-4 bg-gray-50 hover:bg-gray-100 transition-colors">
+              <div className="px-6 py-4 bg-slate-50 hover:bg-slate-100 transition-colors">
                 <div className="flex items-center space-x-4">
-                  <div className="w-6 h-6 border-2 border-gray-300 rounded-full hover:border-teal-500 transition-colors flex items-center justify-center">
+                  <div className="w-6 h-6 border-2 border-slate-300 rounded-full hover:border-teal-500 transition-colors flex items-center justify-center">
                   </div>
                   <div className="flex-1">
                     <input
@@ -299,7 +299,7 @@ export function ListPage() {
                       value={newItemName}
                       onChange={(e) => setNewItemName(e.target.value)}
                       onKeyPress={handleInlineKeyPress}
-                      className="w-full bg-transparent border-none outline-none font-medium text-gray-700 text-lg placeholder-gray-400 focus:placeholder-gray-300"
+                      className="w-full bg-transparent border-none outline-none font-medium text-slate-700 text-lg placeholder-slate-400 focus:placeholder-slate-300"
                     />
                   </div>
                 </div>

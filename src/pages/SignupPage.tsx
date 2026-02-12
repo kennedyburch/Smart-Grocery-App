@@ -111,7 +111,7 @@ export const SignupPage: React.FC = () => {
                 value={formData.name}
                 onChange={handleChange}
                 className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  validationErrors.name ? 'border-red-300' : 'border-gray-300'
+                  validationErrors.name ? 'border-red-300' : 'border-slate-300'
                 } placeholder-slate-400 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-teal-500 focus:z-10 sm:text-sm`}
                 placeholder="Enter your full name"
               />
@@ -121,7 +121,7 @@ export const SignupPage: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-slate-700">
                 Email Address
               </label>
               <input
@@ -133,8 +133,8 @@ export const SignupPage: React.FC = () => {
                 value={formData.email}
                 onChange={handleChange}
                 className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  validationErrors.email ? 'border-red-300' : 'border-gray-300'
-                } placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 sm:text-sm`}
+                  validationErrors.email ? 'border-red-300' : 'border-slate-300'
+                } placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 sm:text-sm`}
                 placeholder="Enter your email address"
               />
               {validationErrors.email && (
@@ -143,7 +143,7 @@ export const SignupPage: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="password" className="block text-sm font-medium text-slate-700">
                 Password
               </label>
               <input
@@ -155,8 +155,8 @@ export const SignupPage: React.FC = () => {
                 value={formData.password}
                 onChange={handleChange}
                 className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  validationErrors.password ? 'border-red-300' : 'border-gray-300'
-                } placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 sm:text-sm`}
+                  validationErrors.password ? 'border-red-300' : 'border-slate-300'
+                } placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 sm:text-sm`}
                 placeholder="Create a password (min. 6 characters)"
               />
               {validationErrors.password && (
@@ -165,7 +165,7 @@ export const SignupPage: React.FC = () => {
             </div>
 
             <div>
-              <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="confirmPassword" className="block text-sm font-medium text-slate-700">
                 Confirm Password
               </label>
               <input
@@ -177,8 +177,8 @@ export const SignupPage: React.FC = () => {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 className={`mt-1 appearance-none relative block w-full px-3 py-2 border ${
-                  validationErrors.confirmPassword ? 'border-red-300' : 'border-gray-300'
-                } placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 sm:text-sm`}
+                  validationErrors.confirmPassword ? 'border-red-300' : 'border-slate-300'
+                } placeholder-slate-500 text-slate-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 focus:z-10 sm:text-sm`}
                 placeholder="Confirm your password"
               />
               {validationErrors.confirmPassword && (
@@ -228,7 +228,7 @@ export const SignupPage: React.FC = () => {
           </div>
 
           <div className="text-center">
-            <p className="text-sm text-gray-600">
+            <p className="text-sm text-slate-600">
               Already have an account?{' '}
               <Link 
                 to="/login" 
