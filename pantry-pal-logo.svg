@@ -1,0 +1,20 @@
+<svg width="200" height="60" viewBox="0 0 200 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo Icon -->
+  <g transform="translate(10, 10)">
+    <rect x="6" y="4" width="28" height="34" rx="3" fill="#667eea"/>
+    <rect x="14" y="2" width="12" height="4" rx="2" fill="#764ba2"/>
+    <circle cx="12" cy="14" r="1.5" fill="white" opacity="0.9"/>
+    <rect x="16" y="12" width="14" height="2" rx="1" fill="white" opacity="0.8"/>
+    <circle cx="12" cy="20" r="1.5" fill="white" opacity="0.9"/>
+    <rect x="16" y="18" width="10" height="2" rx="1" fill="white" opacity="0.8"/>
+    <circle cx="12" cy="26" r="1.5" fill="white" opacity="0.9"/>
+    <rect x="16" y="24" width="12" height="2" rx="1" fill="white" opacity="0.8"/>
+    <circle cx="12" cy="32" r="1.5" fill="white" opacity="0.9"/>
+    <rect x="16" y="30" width="8" height="2" rx="1" fill="white" opacity="0.8"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="62" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="700" fill="#2d3748" letter-spacing="-0.5">
+    Pantry<tspan fill="#667eea">Pal</tspan>
+  </text>
+</svg>

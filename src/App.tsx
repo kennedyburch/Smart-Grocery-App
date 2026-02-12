@@ -70,10 +70,11 @@ function Navigation() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <div className="flex-shrink-0 flex items-center">
-              <div className="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold text-lg">P</span>
-              </div>
-              <span className="ml-2 text-xl font-bold text-slate-800">Pantry Pal</span>
+              <img 
+                src="/pantry-pal-logo.svg" 
+                alt="Pantry Pal Logo" 
+                className="h-14 w-auto"
+              />
             </div>
           </div>
           <div className="flex items-center space-x-4">
