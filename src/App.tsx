@@ -8,6 +8,7 @@ import ShopPage from './pages/ShopPage.tsx';
 import RecentPage from './pages/RecentPage.tsx';
 import DesignDNAPage from './pages/DesignDNAPage.tsx';
 import { ProtectedRoute, PublicOnlyRoute } from './components/ProtectedRoute';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
             </ProtectedRoute>
           } />
           <Route path="/design-dna" element={<DesignDNAPage />} />
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </div>
     </Router>
@@ -133,6 +135,16 @@ function Navigation() {
                 >
                   🎨 Behind the Design
                 </Link>
+                <Link
+                  to="/about"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === '/about'
+                      ? 'bg-slate-100 text-slate-800'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  📄 README
+                </Link>
                 <div className="flex items-center space-x-3">
                   <span className="text-sm text-slate-600">Hi, {user.name}</span>
                   <button
@@ -171,6 +183,16 @@ function Navigation() {
                   className="bg-teal-500 hover:bg-teal-600 text-white px-4 py-2 rounded-md text-sm font-medium transition-colors shadow-md"
                 >
                   Sign Up
+                </Link>
+                <Link
+                  to="/about"
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+                    location.pathname === '/about'
+                      ? 'bg-slate-100 text-slate-800'
+                      : 'text-slate-500 hover:text-slate-800'
+                  }`}
+                >
+                  📄 README
                 </Link>
               </>
             )}
